@@ -1,0 +1,19 @@
+<h1>Wellcome to dashbord</h1>
+<table border="1">
+
+    <tr>
+        <td><input type="button" value="logout"></td>
+    </tr>
+
+</table>
+<script>
+    let chekUser = JSON.parse(localStorage.getItem('chekUserLogin'));
+    if(!window){
+        window.location.href = "login.html"
+    }
+    
+    const logout = () =>{
+        localStorage.removeItem('checklogin');
+        window.location.href="login.html"
+    }
+</script>

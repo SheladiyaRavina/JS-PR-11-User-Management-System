@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="./assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" />
+    <style>
+        .content-wrapper .auth-form-light{
+            border-radius: 20px;
+            border: 1px solid rgb(84, 83, 83);
+            background-color: rgba(239, 236, 236, 0.061);
+        }
+        .content-wrapper{
+            background-image: url('./assets/images/sprites/dark.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.924);
+            background-blend-mode: darken;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+          <div class="row flex-grow">
+            <div class="col-lg-4 mx-auto">
+              <div class="auth-form-light text-left p-5">
+                <div class="brand-logo">
+                  <img src="./assets/images/logo.svg">
+                </div>
+                <h4 class="text-white">New here?</h4>
+                <h6 class="font-weight-light text-white">Signing up is easy. It only takes a few steps</h6>
+                <form class="pt-3">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg"id="name" placeholder="Username">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control form-control-lg" id="email" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" id="password" placeholder="password">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" id="cpassword" placeholder="Confrom-password">
+                  </div>
+                  <div class="mb-4">
+                    <div class="form-check">
+                      <label class="form-check-label text-muted">
+                        <input type="checkbox" class="form-check-input"> I agree to all Terms & Conditions </label>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" onclick="save()">SIGN UP</a>
+                  </div>
+                  <div class="text-center mt-4 font-weight-light text-muted"> Already have an account? <a href="login.html" class="text-primary">Login</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+   
+
+    <script type ="text/javascript">
+        let data = [{
+          userid : 1,
+          name : "Ravina",
+          email : "ravinasheladiya810@gmail.com",
+          password : 123456,
+          role : "admin",
+
+        }];
+    const save = () =>{
+       let name = document.getElementById('name').value;
+       let email = document.getElementById('email').value;
+       let password = document.getElementById('password').value;
+       let cpassword = document.getElementById('cpassword').value;
+   
+       if(cpassword == password){
+           let obj = {
+              userid : Math.floor(Math.random()* 1000),
+               name : name,
+               email : email,
+               password : password,
+               cpassword : cpassword,
+               role : "user"
+           }
+   
+           if(localStorage.getItem('register') === null || localStorage.getItem('register') === undefined){
+               data.push(obj);
+               localStorage.setItem('register',JSON.stringify(data));
+           
+           }else{
+               let val=JSON.parse(localStorage.getItem('register'));
+               val.push(obj);
+               localStorage.setItem('register',JSON.stringify(val));
+           }
+           alert("user sucessfully created.");
+           document.getElementById('name').value="";
+           document.getElementById('email').value="";
+           document.getElementById('password').value="";
+           document.getElementById('cpassword').value="";
+           window.location.href="login.html";
+   
+       }else{
+           alert("password and confrompassword is not same");
+           
+       }
+     
+    }
+   </script>
+  </body>
+</html>
